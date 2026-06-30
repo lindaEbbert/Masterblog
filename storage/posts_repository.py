@@ -78,3 +78,15 @@ def delete_post_by_id(post_id):
         save_posts(posts)
     else:
         print(f"No entry found for post id {post_id}.")
+
+
+def get_post_by_id(post_id):
+    """ Gets a post from the database by its id
+    :param post_id: post id
+    :return: dictionary of the post, none if not found
+    """
+    posts = get_posts()
+    for post in posts:
+        if post["id"] == str(post_id):
+            return post
+    return None

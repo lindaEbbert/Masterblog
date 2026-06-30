@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Edit the post</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body class="add">
+<h1>Edit post</h1>
+<div class="post_form">
+    <form action="{{ url_for('edit', post_id=post_id) }}" method="post">
+        <div class="item">
+            <label for="author">Author</label>
+            <input id="author" name="author" type="text" value="{{ original_author }}" required>
+        </div>
+        <div class="item">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" value="{{ original_title }}" required>
+        </div>
+        <div class="item">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="10" >{{ original_content }}</textarea>
+        </div>
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>
