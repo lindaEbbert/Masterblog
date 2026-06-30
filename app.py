@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-from storage.posts_repository import get_posts, add_post
+from storage.posts_repository import get_posts, add_post, delete_post_by_id
 
 app = Flask(__name__)
 
@@ -20,6 +20,12 @@ def add():
         add_post(post_author, post_title, post_content)
         return redirect(url_for('index'))
     return render_template('add.html')
+
+
+@app.route('/delete/<int:post_id>')
+def delete(post_id):
+    delete_post_by_id(post_id)
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

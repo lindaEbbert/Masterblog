@@ -26,6 +26,7 @@ h1 {
 
 .post h2 {
     margin-top: 0;
+    margin-bottom: 0.5em;
 }
 
 .post p {
@@ -76,6 +77,11 @@ nav button {
     padding: 5px 10px;
     font-weight: bold;
     border: solid 1px #4F4F4F;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 
