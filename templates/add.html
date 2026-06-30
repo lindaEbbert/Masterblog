@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Add post</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body class="add">
+<h1>Add a new post</h1>
+<div class="post_form">
+    <form action="{{ url_for('add') }}" method="post">
+        <div class="item">
+            <label for="author">Author</label>
+            <input id="author" name="author" type="text">
+        </div>
+        <div class="item">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text">
+        </div>
+        <div class="item">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="10"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>
