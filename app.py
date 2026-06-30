@@ -1,11 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template
+from storage.posts_repository import get_posts
 
 app = Flask(__name__)
 
-
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    posts = get_posts()
+    return render_template('index.html', posts=posts)
 
 
 if __name__ == '__main__':
