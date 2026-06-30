@@ -1,49 +1,80 @@
 import json
 import os
 
+JSON_PATH = "posts.json"
 
-if not os.path.exists("posts.json"):
-    with open("posts.json", "w") as data_obj:
-        json.dump({}, data_obj)
+def initialize_json():
+    """ Initializes the json file if needed"""
+    if not os.path.exists(JSON_PATH):
+        with open(JSON_PATH, "w") as data_obj:
+            json.dump([], data_obj)
 
 
 def get_posts():
     """ Gets all posts from the database and return them as a dictionary"""
-    with open("posts.json", "r") as data_obj:
+    initialize_json()
+    with open(JSON_PATH, "r") as data_obj:
         return json.load(data_obj)
 
 
 def save_posts(posts):
     """ Saves posts to the database"""
-    with open("posts.json", "w") as data_obj:
+    with open(JSON_PATH, "w") as data_obj:
         json.dump(posts, data_obj)
+
+
+def get_max_post_id():
+    """ Gets the max post id from the database. If there are no posts, returns 0"""
+    posts = get_posts()
+    if not posts:
+        return 0
+    max_id = int(posts[0]["id"])
+    for post in posts:
+        if int(post["id"]) > max_id:
+            max_id = int(post["id"])
+    return max_id
 
 
 def add_post(author, title, content):
     """ Adds a new post to the database"""
     posts = get_posts()
-    post_id = max([int(key) for key in posts.keys()], default=0) + 1
-    posts[str(post_id)] = {"author": author,
-                      "title": title,
-                      "content": content}
+    next_post_id = get_max_post_id() + 1
+    posts.append({"id": str(next_post_id),
+                  "author": author,
+                  "title": title,
+                  "content": content})
     save_posts(posts)
 
 
 def update_post_by_id(post_id, author=None, title=None, content=None):
     """ Updates a post in the database"""
     posts = get_posts()
-    if author:
-        posts[str(post_id)]["author"] = author
-    if title:
-        posts[str(post_id)]["title"] = title
-    if content:
-        posts[str(post_id)]["content"] = content
+    for post in posts:
+        if post["id"] == str(post_id):
+            post_index = posts.index(post)
+            if author:
+                posts[post_index]["author"] = author
+            if title:
+                posts[post_index]["title"] = title
+            if content:
+                posts[post_index]["content"] = content
+            break
     save_posts(posts)
 
 
 def delete_post_by_id(post_id):
-    """ Deletes a post from the database"""
+    """ Deletes a post from the database
+    :param post_id: The id of the post to delete"""
     posts = get_posts()
-    del posts[str(post_id)]
-    save_posts(posts)
-
+    post_id_found = False
+    for post in posts:
+        if post["id"] == str(post_id):
+            post_index_in_posts = posts.index(post)
+            del posts[post_index_in_posts]
+            post_id_found = True
+            break
+    if post_id_found:
+        print(f"Entry with post id {post_id} successfully deleted.")
+        save_posts(posts)
+    else:
+        print(f"No entry found for post id {post_id}.")
