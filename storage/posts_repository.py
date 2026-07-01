@@ -7,6 +7,9 @@ def initialize_json():
     """ Initializes the json file if needed"""
     if not os.path.exists(JSON_PATH):
         with open(JSON_PATH, "w") as data_obj:
+            """@Alejandro: I know that there (and below in save_posts()) 
+            probably should be an encoding parameter. Pls have a look at discord. 
+            I wrote you a message with a question there."""
             json.dump([], data_obj)
 
 

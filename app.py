@@ -49,3 +49,18 @@ def update(post_id):
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
+
+
+"""
+**************** COMMENTS FOR ALEJANDRO *******************
+1) 
+I really would love to go the extra bonus steps and get 
+creative with the codio projects but I need to finish everything 
+by the end of this week as I will start an internship next week.
+That's why I'm a little bit under time pressure right now. ':D
+
+2) 
+I wrote you a message in discord regarding another codio project.
+Could you have a look please? :)
+*************************************************************
+""""
