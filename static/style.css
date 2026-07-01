@@ -71,7 +71,7 @@ nav {
     justify-content: end;
 }
 
-nav button {
+.new_post_btn {
     background-color: #91e77e;
     border-radius: 10px;
     padding: 5px 10px;

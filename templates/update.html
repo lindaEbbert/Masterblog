@@ -9,7 +9,7 @@
 <body class="add">
 <h1>Edit post</h1>
 <div class="post_form">
-    <form action="{{ url_for('edit', post_id=post_id) }}" method="post">
+    <form action="{{ url_for('update', post_id=post_id) }}" method="post">
         <div class="item">
             <label for="author">Author</label>
             <input id="author" name="author" type="text" value="{{ original_author }}" required>
