@@ -38,6 +38,8 @@ def update(post_id):
         update_post_by_id(post_id, post_author, post_title, post_content)
         return redirect(url_for('index'))
     original_post = get_post_by_id(post_id)
+    if not original_post:
+        return "Post not found", 404
     return render_template('update.html',
                            original_author=original_post["author"],
                            original_title=original_post["title"],
